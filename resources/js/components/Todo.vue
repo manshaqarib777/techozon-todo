@@ -29,7 +29,7 @@
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.content }}</td>
                 <td>{{ (todo.completion_time !=null ? "Completed" : "Pending" ) }}</td>
-                <td>
+                <td v-if="todo.user_id==profile.id">
                     <div class="btn-group" role="group">
                         <button class="btn btn-success" @click="complete(todo)">{{ (todo.completion_time !=null ? "Mark As Pending" : "Mark As Completed" ) }} </button>
                         <button class="btn btn-primary" @click="editTodo(todo)">Edit</button>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+    import {mapActions, mapGetters,mapSetters} from 'vuex';
+
     export default {
         name: "Todo.vue",
         data: function () {
@@ -89,6 +91,7 @@
             }
         },
         computed: {
+            ...mapGetters(["profile"]),
             todos() {
                 return this.$store.getters.todos;
             }

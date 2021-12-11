@@ -2204,6 +2204,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2248,6 +2255,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Todo.vue",
   data: function data() {
@@ -2294,11 +2302,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  computed: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["profile"])), {}, {
     todos: function todos() {
       return this.$store.getters.todos;
     }
-  },
+  }),
   mounted: function mounted() {
     var _this3 = this;
 
@@ -40342,60 +40350,62 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _c("td", [
-              _c(
-                "div",
-                { staticClass: "btn-group", attrs: { role: "group" } },
-                [
+            todo.user_id == _vm.profile.id
+              ? _c("td", [
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      on: {
-                        click: function ($event) {
-                          return _vm.complete(todo)
-                        },
-                      },
-                    },
+                    "div",
+                    { staticClass: "btn-group", attrs: { role: "group" } },
                     [
-                      _vm._v(
-                        _vm._s(
-                          todo.completion_time != null
-                            ? "Mark As Pending"
-                            : "Mark As Completed"
-                        ) + " "
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: {
+                            click: function ($event) {
+                              return _vm.complete(todo)
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              todo.completion_time != null
+                                ? "Mark As Pending"
+                                : "Mark As Completed"
+                            ) + " "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function ($event) {
+                              return _vm.editTodo(todo)
+                            },
+                          },
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteTodo(todo)
+                            },
+                          },
+                        },
+                        [_vm._v("Delete")]
                       ),
                     ]
                   ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: {
-                        click: function ($event) {
-                          return _vm.editTodo(todo)
-                        },
-                      },
-                    },
-                    [_vm._v("Edit")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function ($event) {
-                          return _vm.deleteTodo(todo)
-                        },
-                      },
-                    },
-                    [_vm._v("Delete")]
-                  ),
-                ]
-              ),
-            ]),
+                ])
+              : _vm._e(),
           ])
         }),
         0

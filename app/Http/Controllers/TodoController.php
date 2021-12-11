@@ -33,7 +33,8 @@ class TodoController extends Controller
         if (!Gate::allows('todo-action', $user)) {
             return response()->json(['success' => false,'data' => '403 Forbidden'],Response::HTTP_FORBIDDEN);
         }
-        $todos = $user->todos->toArray();
+        // $todos = $user->todos->toArray();
+        $todos = Todo::get()->toArray();
         return $this->respondWithSuccess($todos);
 
     }
